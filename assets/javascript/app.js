@@ -58,24 +58,27 @@ var questions = [
 
 ];
 
-//set timer for limited amount of time 60 second
-var counter = 60;
+//set timer for limited amount of time 120 second
+var counter = 120;
 var timer = setInterval(decreaseCounter, 1 * 1000)
 
-//counterdown timer
+//display initial time countdown
 function decreaseCounter() {
     counter--;
 
-    $('#timerGoDown').text(counter);
+    $('.timerGoDown').text(counter);
 
     if (counter == 0) {
-        $('#timerGoDown').text('Time is up!')
+        $('.timerGoDown').text('Time is up!')
+
         clearInterval(timer)
         showResults();
     }
+
 }
 
 function render() {
+
     //create a trivial game form with 4 multiple choices
     for (var i = 0; i < questions.length; i++) {
         var divTag = $('<div>').addClass("form-group")
@@ -140,7 +143,7 @@ function showResults() {
     console.log(correctAns)
     console.log(questions.length - correctAns)
 
-    $('#timerGoDown').text('Done!')
+    $('.timerGoDown').text('All Done!')
     clearInterval(timer)
 }
 
