@@ -1,3 +1,4 @@
+//Question lists
 var questions = [
     {
         question: "1. What is the term for a fix, known as software problem?",
@@ -30,7 +31,7 @@ var questions = [
             "D. 4, 16",
         ],
         answer: 0,
-    //     answer: "A. IPv4 uses 32 bits for the host address, whereas IPv6 uses 128 bits for this."
+        //     answer: "A. IPv4 uses 32 bits for the host address, whereas IPv6 uses 128 bits for this."
     },
     {
         question: "4. Which of the following is a method of capturing a virtual machine at a given point in time? ",
@@ -41,45 +42,38 @@ var questions = [
             "D. WMI",
         ],
         answer: 1,
-    //     answer: "B. Snapshot is a method of capturing a virtual machine at a given point in time."
+        //     answer: "B. Snapshot is a method of capturing a virtual machine at a given point in time."
     },
-    // {
-    //     question: "5. Which of the following is the highest classification level in the government? ",
-    //     choices: [
-    //         "A. Secret",
-    //         "B. Confidential",
-    //         "C. Top Secret",
-    //         "D.  Classified",
-    //     ],
-    //     answer: 2,
-    //     // answer: "C. Top Secret"
-    // },
+    {
+        question: "5. Which of the following is the highest classification level in the government? ",
+        choices: [
+            "A. Secret",
+            "B. Confidential",
+            "C. Top Secret",
+            "D.  Classified",
+        ],
+        answer: 2,
+        // answer: "C. Top Secret"
+    },
 
 ];
 
-// //set timer for limited amount of time 60 second
-// var counter = 60;
-// var timer = setInterval(decreaseCounter, 1 * 1000)
+//set timer for limited amount of time 60 second
+var counter = 60;
+var timer = setInterval(decreaseCounter, 1 * 1000)
 
-// $('#timerGoDown').text(counter)
-// $('#timer').prepend("Time Remaining:")
+//counterdown timer
+function decreaseCounter() {
+    counter--;
 
-// counterdown timer
-// function decreaseCounter() {
-//     counter--;
+    $('#timerGoDown').text(counter);
 
-//     $('#timerGoDown').text(counter);
-//     console.log(decreaseCounter)
-
-//     if (counter == 0) {
-//         $('#timerGoDown').text('Time is up!')
-//         clearInterval(timer)
-//     }
-
-// }
-
-// console.log(questions[0])
-// console.log(questions[1])
+    if (counter == 0) {
+        $('#timerGoDown').text('Time is up!')
+        clearInterval(timer)
+        showResults();
+    }
+}
 
 function render() {
     //create a trivial game form with 4 multiple choices
@@ -112,74 +106,51 @@ function render() {
         $('form').append(divTag)
     }
 
-    
+    //create a button to submit
     var btn = $('<button>').text("Done")
     $('form').append(btn)
 }
 
-//$('button').on('click', function(){
-$(document).on('click', 'button', function () {
-    //Prevent the page from refreshing
-    event.preventDefault()
-
+function checkAnswer() {
     /*
         var q1 = $("input[name='question0']:checked").val()
         var q2 = $("input[name='question1']:checked").val()
              ^                          ^
     */
-    var ans = [];
-    var correct = 0;
-    var incorrect = 0;
 
+    var totalCorrectAnswer = 0;
     for (var q = 0; q < questions.length; q++) {
         //$("input[name='question"+q+"']:checked").val()
         //$(`input[name='question ${q}']:checked`).val()
         var result = parseInt($(`input[name='question${q}']:checked`).val())
-        ans.push(result)
 
         if (result === questions[q].answer) {
-            correct++
-            console.log('Correct')
-        } else {
-            incorrect++
-            $(incorrect).append('p')
-            console.log('Incorrect, Please try again!!')
+            totalCorrectAnswer++
         }
-
     }
-    // console.log(count)
-})
+    return totalCorrectAnswer;
+}
 
-// $(document).on('submit', function () {
-//     event.preventDefault()
-//     console.log('lol')
-// })
+function showResults() {
+    var correctAns = checkAnswer()
+    $('form').hide()
+    $('.results').show()
+    $('.correctAnswer').text(correctAns)
+    $('.incorrectAnswer').text(questions.length - correctAns)
+    console.log(correctAns)
+    console.log(questions.length - correctAns)
+
+    $('#timerGoDown').text('Done!')
+    clearInterval(timer)
+}
+
+//$('button').on('click', function(){
+// $('form').submit(function () {
+$(document).on('click', 'button', function () {
+    event.preventDefault(); //Prevent the page from refreshing
+    showResults();
+});
 
 render()
-//     // var ans = question[].answer;
-//     var getAnswer = $("input[name='question' + i]:checked").val();
-//     console.log(questions[0].answer)
-    // console.log(questions[1].answer)
-    // console.log(questions[2].answer)
-    // console.log(questions[3].answer)
-    // console.log(questions[4].answer)
 
-    //  if (result == answer){
-    //      $('#content').text('Correct!!');
-    //  }else {
-    //     $('#content').text('Incorrect, Please try again!!');
-    //  }
 
-    //  //Prevent the page from refreshing
-    //  event.preventDefault();
-
-    // The page will reveal the number of questions that players answer correctly and incorrectly.
-
-/*
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  <label class="form-check-label" for="exampleRadios2">
-    Second default radio
-  </label>
-</div>
-*/

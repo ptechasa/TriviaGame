@@ -16,14 +16,16 @@
 
 <body>
     <h1>Trivial Game</h1>
-    <p id="timer"></p>
-    <!-- <p>Time Remaining: <span id="timeRemaining"></span></p> -->
     <p id="timerGoDown"></p>
 
     <form action="#">
     </form>
     
-    <p id="content"></p>
+    <div class="results" style="display: none">
+        <h2>All Done!!</h2>
+        <p>Correct Answer: <span class="correctAnswer">0</span></p>
+        <p>Incorrect Answer: <span class="incorrectAnswer">0</span></p>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
