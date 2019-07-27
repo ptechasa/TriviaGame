@@ -164,7 +164,9 @@ function showResults() {
 
 //when click on the button, it will show total correct answer and incorrect answer
 $(document).on('click', 'button', function () {
-    event.preventDefault(); //Prevent the page from refreshing
+
+    //Prevent the page from refreshing
+    event.preventDefault(); 
     showResults();
 });
 
