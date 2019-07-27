@@ -9,7 +9,6 @@ var questions = [
             "D. Upgrade",
         ],
         answer: 1,
-        // answer: "B. A patch is a fix for a known software problem."
     },
     {
         question: "2. Which of the following programming interface that allows a remote computer to run programs on a local machine?",
@@ -20,7 +19,6 @@ var questions = [
             "D. RPC"
         ],
         answer: 3,
-        // answer: "D. RPC (Remote Procedure Call) is a programming interface that allows a remote computer to run programs on a local machine."
     },
     {
         question: "3. How many bits are used for addressing with IPv4 and IPv6, respectively? ",
@@ -31,7 +29,6 @@ var questions = [
             "D. 4, 16",
         ],
         answer: 0,
-        //     answer: "A. IPv4 uses 32 bits for the host address, whereas IPv6 uses 128 bits for this."
     },
     {
         question: "4. Which of the following is a method of capturing a virtual machine at a given point in time? ",
@@ -42,7 +39,6 @@ var questions = [
             "D. WMI",
         ],
         answer: 1,
-        //     answer: "B. Snapshot is a method of capturing a virtual machine at a given point in time."
     },
     {
         question: "5. Which of the following is the highest classification level in the government? ",
@@ -53,28 +49,35 @@ var questions = [
             "D.  Classified",
         ],
         answer: 2,
-        // answer: "C. Top Secret"
     },
-
+    {
+        question: "6. What is the default port for Telnet? ",
+        choices: [
+            "A. 25",
+            "B. 22",
+            "C. 80",
+            "D. 23",
+        ],
+        answer: 3,
+    },
 ];
 
-//set timer for limited amount of time 120 second
-var counter = 120;
+//set timer for limited amount of time 90 second
+var counter = 90;
 var timer = setInterval(decreaseCounter, 1 * 1000)
 
-//display initial time countdown
+// display initial time countdown
 function decreaseCounter() {
     counter--;
+    $('.timeGoDown').text(counter);
+    $('form').show()
 
-    $('.timerGoDown').text(counter);
-
+    //The game ends when the time runs out, and the result will display
     if (counter == 0) {
-        $('.timerGoDown').text('Time is up!')
-
+        $('.timeGoDown').text('Time is up!')
         clearInterval(timer)
         showResults();
     }
-
 }
 
 function render() {
@@ -86,12 +89,9 @@ function render() {
         var question = questions[i]
         console.log(question.question)
         divTag.append($('<p>').text(question.question))
-        // console.log(question.choices[0])
-        // console.log(question.choices[1])
 
         for (var x = 0; x < question.choices.length; x++) {
             var choice = question.choices[x]
-            // console.log(question.choices[x])
             var div = $('<div>').attr("class", "form-check")
             var radio = $('<input>')
                 .attr("type", "radio")
@@ -125,8 +125,11 @@ function checkAnswer() {
     for (var q = 0; q < questions.length; q++) {
         //$("input[name='question"+q+"']:checked").val()
         //$(`input[name='question ${q}']:checked`).val()
+        
+        //convert string into a number
         var result = parseInt($(`input[name='question${q}']:checked`).val())
 
+        //if player's answer match with the answers in the question lists, correct scrore will be increase
         if (result === questions[q].answer) {
             totalCorrectAnswer++
         }
@@ -134,26 +137,35 @@ function checkAnswer() {
     return totalCorrectAnswer;
 }
 
+//result of correct answer and incorrect answer
 function showResults() {
     var correctAns = checkAnswer()
-    $('form').hide()
+
+    //hide form
+    $('form').hide()   
+    
+    //then display only results
     $('.results').show()
+
+    //Total correct answer 
     $('.correctAnswer').text(correctAns)
+
+    //Total incorrect answer
     $('.incorrectAnswer').text(questions.length - correctAns)
     console.log(correctAns)
     console.log(questions.length - correctAns)
 
-    $('.timerGoDown').text('All Done!')
+    //display text when time runs out
+    $('.timeGoDown').text('All Done!')
+
+    //clear timer
     clearInterval(timer)
 }
 
-//$('button').on('click', function(){
-// $('form').submit(function () {
+//when click on the button, it will show total correct answer and incorrect answer
 $(document).on('click', 'button', function () {
     event.preventDefault(); //Prevent the page from refreshing
     showResults();
 });
 
 render()
-
-

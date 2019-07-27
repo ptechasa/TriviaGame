@@ -28,9 +28,10 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 6px;
+    font-family: 'Rokkitt', serif;
 }
 
-.timerGoDown,
+.timeGoDown,
 .results {
     text-align: center;
     font-size: 30px;
