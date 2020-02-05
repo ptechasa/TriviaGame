@@ -62,10 +62,10 @@ var questions = [
     },
 ];
 
-
 //set timer for limited amount of time 90 second
 var counter = 90;
-var timer = setInterval(decreaseCounter, 1 * 1000)
+var timer; // var timer = undefined;
+// var timer = setInterval(decreaseCounter, 1 * 1000)
 
 // display initial time countdown
 function decreaseCounter() {
@@ -126,7 +126,7 @@ function checkAnswer() {
     for (var q = 0; q < questions.length; q++) {
         //$("input[name='question"+q+"']:checked").val()
         //$(`input[name='question ${q}']:checked`).val()
-        
+
         //convert string into a number
         var result = parseInt($(`input[name='question${q}']:checked`).val())
 
@@ -143,8 +143,8 @@ function showResults() {
     var correctAns = checkAnswer()
 
     //hide form
-    $('form').hide()   
-    
+    $('form').hide()
+
     //then display only results
     $('.results').show()
 
@@ -160,15 +160,56 @@ function showResults() {
     $('.timeGoDown').text('All Done!')
 
     //clear timer
-    clearInterval(timer)
+    // if (timer == undefined){
+    // }else {
+    //     clearInterval(timer)
+    // }
+
+    if (timer != undefined) {
+        clearInterval(timer)
+        timer = undefined
+    }
+
 }
 
 //when click on the button, it will show total correct answer and incorrect answer
 $(document).on('click', 'button', function () {
 
     //Prevent the page from refreshing
-    event.preventDefault(); 
-    showResults();
+    event.preventDefault();
+    // showResults();
+
+    console.log('hit')
+    console.log(this)
+    console.log($(this).attr('id'))
+
+    // if ($(this).attr('id') === "start") {
+
+    // }
+    var btn = $(this).attr('id')
+    if (btn === "start") {
+        console.log('hey!')
+
+        if (timer === undefined) {
+            timer = setInterval(decreaseCounter, 1 * 1000)
+
+            //Once click 'start' button, it will remove start button from the page
+            $("#start").remove();
+        }
+
+    } else {
+        console.log('sorry')
+        showResults();
+    }
 });
 
+
 render()
+
+// review
+// if else, else if
+// function
+
+//add two more function 
+// one- clear time interval
+//second- start timing

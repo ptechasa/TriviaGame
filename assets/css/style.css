@@ -38,3 +38,9 @@ button {
     color:#15439e; 
     padding: 30px;
 }
+
+#start{
+    display: block;
+    max-width: 300px;
+    margin: auto;
+}
