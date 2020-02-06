@@ -1,46 +1,53 @@
 body {
-	background-image: url(../images/jigsaw.jpg);
-    background-size: 1440px 1000px;
-    margin-bottom: 70px;
+  background-image: url(../images/abstract_background_technology.jpg);
+  margin-bottom: 40px;
 }
 
 h1 {
-    font-family: 'Bungee Outline', cursive;
-    text-align: center;
-    color: #0e3e6d;
-    background: #ffc107;
-    padding: 20px;
+  font-family: "Bungee Outline", cursive;
+  text-align: center;
+  color: #3e0208;
+  background: #13dfed;
+  padding: 20px;
 }
 
 p,
 div {
-    font-family: 'Rokkitt', serif;
+  font-family: "Rokkitt", serif;
 }
 
 form {
-    padding-left: 50px;
+  padding-left: 70px;
 }
 
 button {
-    padding: .5em 1em; 
-    background-color: rgb(243, 203, 22);
-    color: #0d0538;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    font-family: 'Rokkitt', serif;
+  padding: 0.5em 2em;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-family: "Rokkitt", serif;
+  font-size: 16px;
+  background-color: #7fccde;
+  box-shadow: 0 0 0 1px #7fccde inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+    0 8px 0 0 rgba(102, 164, 178, 0.6), 0 8px 0 1px rgba(0, 0, 0, 0.4),
+    0 8px 8px 1px rgba(0, 0, 0, 0.5);
+}
+
+button:active {
+  box-shadow: 0 0 0 1px #7fccde inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+    0 0 0 1px rgba(0, 0, 0, 0.4);
 }
 
 .timeGoDown,
 .results {
-    text-align: center;
-    font-size: 30px;
-    color:#15439e; 
-    padding: 30px;
+  text-align: center;
+  font-size: 30px;
+  color: #15439e;
+  padding: 10px;
 }
 
-#start{
-    display: block;
-    max-width: 300px;
-    margin: auto;
+#start {
+  display: block;
+  margin: auto;
 }
