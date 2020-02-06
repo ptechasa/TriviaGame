@@ -71,7 +71,7 @@ var timer; // var timer = undefined;
 function decreaseCounter() {
     counter--;
     $('.timeGoDown').text('Time remaining: ' + counter);
-    $('form').show()
+    // $('form').show()
 
     //The game ends when the time runs out, and the result will display
     if (counter == 0) {
@@ -108,6 +108,9 @@ function render() {
             divTag.append(div)
         }
         $('form').append(divTag)
+
+        //Form will be hide first
+        $('form').hide()
     }
 
     //create a button to submit
@@ -184,8 +187,8 @@ $(document).on('click', 'button', function () {
     console.log($(this).attr('id'))
 
     // if ($(this).attr('id') === "start") {
-
     // }
+
     var btn = $(this).attr('id')
     if (btn === "start") {
         console.log('hey!')
@@ -195,6 +198,9 @@ $(document).on('click', 'button', function () {
 
             //Once click 'start' button, it will remove start button from the page
             $("#start").remove();
+
+            //Form will show when you click 'start' button
+            $('form').show()
         }
 
     } else {
@@ -202,7 +208,6 @@ $(document).on('click', 'button', function () {
         showResults();
     }
 });
-
 
 render()
 
